@@ -10,25 +10,22 @@ namespace SearchPurchaseOrder.Queries
     public class SearchOrdersQueryHandler : IRequestHandler<SearchPurchaseOrdersQuery, IEnumerable<PurchaseOrder>>
     {
         private readonly IPurchaseOrderFileReader _reader;
-        private readonly IEnumerable<IOrderFilter> _filters;
+        private readonly IOrderFilter _filter;
         private readonly string _filePath;
 
-        public SearchOrdersQueryHandler(IPurchaseOrderFileReader reader, IEnumerable<IOrderFilter> filters, IOptions<PurchaseOrderDataSettings> settings)
+        public SearchOrdersQueryHandler(IPurchaseOrderFileReader reader, IOrderFilter filter, IOptions<PurchaseOrderDataSettings> settings)
         {
             _reader = reader;
-            _filters = filters;
+            _filter = filter;
             _filePath = settings.Value.FilePath;
         }
 
         public async Task<IEnumerable<PurchaseOrder>> Handle(SearchPurchaseOrdersQuery request, CancellationToken cancellationToken)
         {
             var allOrders = await _reader.ReadOrders(_filePath);
-
-            foreach (var filter in _filters)
-            {
-                allOrders = filter.Filter(allOrders, request); 
-            }
-
+           
+            allOrders = _filter.Filter(allOrders, request); 
+         
             return allOrders.ToList();
         }
     }

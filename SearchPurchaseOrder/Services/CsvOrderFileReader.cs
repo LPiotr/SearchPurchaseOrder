@@ -12,6 +12,8 @@ namespace SearchPurchaseOrder.Interfaces
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
                 HasHeaderRecord = true,
+                Encoding = System.Text.Encoding.UTF8,
+                Delimiter = ",",
             };
 
             using var reader = new StreamReader(path);

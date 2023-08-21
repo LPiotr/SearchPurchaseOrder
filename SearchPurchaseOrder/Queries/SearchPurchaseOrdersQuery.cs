@@ -1,5 +1,4 @@
-﻿using CsvHelper.Configuration.Attributes;
-using MediatR;
+﻿using MediatR;
 using SearchPurchaseOrder.Models;
 
 namespace SearchPurchaseOrder.Queries

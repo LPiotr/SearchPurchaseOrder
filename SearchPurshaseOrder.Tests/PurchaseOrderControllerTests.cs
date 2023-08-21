@@ -1,12 +1,4 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using Moq;
-using SearchPurchaseOrder.Controllers;
-using SearchPurchaseOrder.Helpers.Interfaces.Parsers;
-using SearchPurchaseOrder.Models;
-using SearchPurchaseOrder.Queries;
-
-namespace SearchPurchaseOrder.Tests
+﻿namespace SearchPurchaseOrder.Tests
 {
     public class PurchaseOrdersControllerTests
     {

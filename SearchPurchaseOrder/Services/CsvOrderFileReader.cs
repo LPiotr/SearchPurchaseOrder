@@ -22,7 +22,9 @@ namespace SearchPurchaseOrder.Interfaces
             {
                 var order = csv.GetRecord<PurchaseOrder>();
                 if (order != null)
-                    orders.Add(order);
+                { 
+                    orders.Add(order); 
+                }
             }
 
             return orders;

@@ -28,6 +28,7 @@ namespace SearchPurchaseOrder.Controllers
             };
 
             var orders = await _mediator.Send(query);
+
             return Ok(orders);
         }
     }

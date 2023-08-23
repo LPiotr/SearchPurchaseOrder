@@ -48,4 +48,8 @@ Number,ClientCode,ClientName,OrderDate,ShipmentDate,Quantity,Confirmed,Value
 "047","CL1280","Robert Lisowski","07.02.2023",,8,0,10.80
 "048","CL1281","Dorota Mak","08.02.2023","11.02.2023",20,1,27.00
 "049","CL1282","Mateusz Wilk","09.02.2023","12.02.2023",15,1,20.25
-"050","CL1283","Gabriela Polak","10.02.2023",,12,0,16.20
+"050","CL1283","Gabriela Polak","10.02.2023","11.02.2023",12,0,16.20
+"051","CL1283","Gabriela Polak","11.02.2023",,12,0,16.20
+"053","CL1283","Gabriela Polak","12.02.2023","13.02.2023",12,0,16.20
+"054","CL1283","Gabriela Polak","13.02.2023","14.02.2023",12,0,16.20
+"055","CL1283","Gabriela Polak","14.02.2023","17.02.2023",12,0,16.20

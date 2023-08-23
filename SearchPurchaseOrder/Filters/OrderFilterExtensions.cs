@@ -1,4 +1,5 @@
 ﻿using SearchPurchaseOrder.Models;
+using System.Globalization;
 
 namespace SearchPurchaseOrder.Filters
 {
@@ -14,15 +15,17 @@ namespace SearchPurchaseOrder.Filters
             return clientCodes?.Count > 0 ? orders.Where(o => clientCodes.Contains(o.ClientCode)) : orders;
         }
 
-        public static IEnumerable<PurchaseOrder> FilterByDate(this IEnumerable<PurchaseOrder> orders, DateTime? startDate, DateTime? endDate)
+        public static IEnumerable<PurchaseOrder> FilterByDate(this IEnumerable<PurchaseOrder> orders, string? startDate, string? endDate)
         {
-            if (startDate.HasValue)
+            if (!string.IsNullOrEmpty(startDate))
             {
-                orders = orders.Where(o => o.OrderDate >= startDate.Value);
+                DateTime parsedStartDate = DateTime.ParseExact(startDate, "dd.MM.yyyy", CultureInfo.InvariantCulture);
+                orders = orders.Where(o => o.OrderDate >= parsedStartDate);
             }
-            if (endDate.HasValue)
+            if (!string.IsNullOrEmpty(endDate))
             {
-                orders = orders.Where(o => o.OrderDate <= endDate.Value);
+                DateTime parsedEndDate = DateTime.ParseExact(endDate, "dd.MM.yyyy", CultureInfo.InvariantCulture);
+                orders = orders.Where(o => o.OrderDate <= parsedEndDate);
             }
             return orders;
         }

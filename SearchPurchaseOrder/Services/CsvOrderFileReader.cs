@@ -1,5 +1,6 @@
 ﻿using CsvHelper;
 using CsvHelper.Configuration;
+using SearchPurchaseOrder.Configuration;
 using SearchPurchaseOrder.Models;
 using System.Globalization;
 
@@ -18,14 +19,15 @@ namespace SearchPurchaseOrder.Interfaces
 
             using var reader = new StreamReader(path);
             using var csv = new CsvReader(reader, config);
+            csv.Context.RegisterClassMap<PurchaseOrderMap>();
 
             var orders = new List<PurchaseOrder>();
             while (await csv.ReadAsync())
             {
                 var order = csv.GetRecord<PurchaseOrder>();
                 if (order != null)
-                { 
-                    orders.Add(order); 
+                {
+                    orders.Add(order);
                 }
             }
 

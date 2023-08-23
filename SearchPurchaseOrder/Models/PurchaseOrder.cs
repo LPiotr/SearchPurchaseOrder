@@ -1,5 +1,4 @@
 ﻿using CsvHelper.Configuration.Attributes;
-using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
 namespace SearchPurchaseOrder.Models
@@ -14,7 +13,7 @@ namespace SearchPurchaseOrder.Models
         [Required]
         public string ClientName { get; set; } = string.Empty;
         [Required]
-        [Format ("dd.MM.yyyy")]
+        [Format("dd.MM.yyyy")]
         public DateTime? OrderDate { get; set; }
         [Format("dd.MM.yyyy")]
         public DateTime? ShipmentDate { get; set; }

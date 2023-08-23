@@ -1,7 +1,5 @@
 using SearchPurchaseOrder.Configuration;
 using SearchPurchaseOrder.Filters;
-using SearchPurchaseOrder.Helpers.Interfaces.Parsers;
-using SearchPurchaseOrder.Helpers.Parsers;
 using SearchPurchaseOrder.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,8 +19,6 @@ cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 builder.Services.AddTransient<IPurchaseOrderFileReader, CsvOrderFileReader>();
 //rejestracja filtrów
 builder.Services.AddTransient<IOrderFilter, PurchaseOrderFilters>();
-//dodana obs³uga parsowania dat
-builder.Services.AddScoped<IDateParser>(sp => new DateParser());
 //dodajemy DI dla sciezki do pliku z appsettings:
 builder.Services.Configure<PurchaseOrderDataSettings>(Configuration.GetSection("PurchaseOrderData"));
 

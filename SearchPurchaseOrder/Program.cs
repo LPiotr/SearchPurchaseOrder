@@ -15,12 +15,13 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(cfg =>
 cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
-//dodajemy odczyt pliku
-builder.Services.AddTransient<IPurchaseOrderFileReader, CsvOrderFileReader>();
+//singleton dla klasy implementuj¹cej import CSV:
+builder.Services.AddSingleton<IPurchaseOrderFileReader, CsvOrderFileReader>();
 //rejestracja filtrów
 builder.Services.AddTransient<IOrderFilter, PurchaseOrderFilters>();
 //dodajemy DI dla sciezki do pliku z appsettings:
-builder.Services.Configure<PurchaseOrderDataSettings>(Configuration.GetSection("PurchaseOrderData"));
+builder.Services.Configure<PurchaseOrderDataSettings>(Configuration.GetSection(nameof(PurchaseOrderDataSettings)));
+
 
 var app = builder.Build();
 

@@ -15,9 +15,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(cfg =>
 cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
-//rejestracja filtrów
 //singleton dla klasy implementuj¹cej import CSV:
 builder.Services.AddSingleton<IPurchaseOrderFileReader, CsvOrderFileReader>();
+//rejestracja filtrów
 builder.Services.AddTransient<IOrderFilter, PurchaseOrderFilters>();
 //dodajemy DI dla sciezki do pliku z appsettings:
 builder.Services.Configure<PurchaseOrderDataSettings>(Configuration.GetSection(nameof(PurchaseOrderDataSettings)));

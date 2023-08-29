@@ -15,7 +15,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(cfg =>
 cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
-//singleton dla klasy implementuj¹cej import CSV:
+//singleton dla klasy implementuj¹cej import CSV: (klasa cache dla obiektu z csv)
 builder.Services.AddSingleton<IPurchaseOrderFileReader, CsvOrderFileReader>();
 //rejestracja filtrów
 builder.Services.AddTransient<IOrderFilter, PurchaseOrderFilters>();

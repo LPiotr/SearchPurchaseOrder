@@ -8,8 +8,12 @@ namespace SearchPurchaseOrder.Interfaces
 {
     public class CsvOrderFileReader : IPurchaseOrderFileReader
     {
+        private readonly List<PurchaseOrder> _orders = new List<PurchaseOrder>();
+
         public async Task<IEnumerable<PurchaseOrder>> ReadOrders(string path)
         {
+            if(_orders.Any()) { return _orders; } 
+            
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
                 HasHeaderRecord = true,
@@ -21,17 +25,16 @@ namespace SearchPurchaseOrder.Interfaces
             using var csv = new CsvReader(reader, config);
             csv.Context.RegisterClassMap<PurchaseOrderMap>();
 
-            var orders = new List<PurchaseOrder>();
             while (await csv.ReadAsync())
             {
                 var order = csv.GetRecord<PurchaseOrder>();
                 if (order != null)
                 {
-                    orders.Add(order);
+                    _orders.Add(order);
                 }
             }
 
-            return orders;
+            return _orders;
         }
     }
 }

@@ -56,6 +56,14 @@ namespace SearchPurchaseOrder.Tests
         }
 
         [Fact]
+        public void FilterByDate_ValidDateRange_ShouldReturnAllOrdersWhenNulls()
+        {
+            var filtered = _sampleOrders.FilterByDate(null, null).ToList();
+
+            Assert.Equal(3, filtered.Count);
+        }
+
+        [Fact]
         public void FilterByDate_InvalidDateRange_ShouldReturnAllOrders()
         {
             var filtered = _sampleOrders.FilterByDate("invalidDate", null).ToList();

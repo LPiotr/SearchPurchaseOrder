@@ -2,18 +2,17 @@
 
 Stwórz REST API w NET 6 zawierające jedną metodę służącą do wyszukiwania zamówień zapisanych w pliku w formacie CSV na podstawie przekazanych danych filtrujących
 
-1. Lokalizacja pliku powinna być zapisana w pliku konfiguracyjnym
-1. Opis pliku CSV
+1.  Lokalizacja pliku powinna być zapisana w pliku konfiguracyjnym
+1.  Opis pliku CSV
 
    1. Struktura pliku:
-
       0. Pierwszą linią pliku CSV są nagłówki
       1. Separator kolumn: przecinek
       2. Separator części dziesiętnej liczb rzeczywistych: kropka
-      3. Format daty: dd.MM.yyyy
-      4. Zapis wartości logicznych true/false: 1/0
-      5. Dane tekstowe w cudzysłowu
-      6. Kodowanie UTF-8
+      4. Format daty: dd.MM.yyyy
+      5. Zapis wartości logicznych true/false: 1/0
+      6. Dane tekstowe w cudzysłowu
+      7. Kodowanie UTF-8
 
    1. Kolumny
 

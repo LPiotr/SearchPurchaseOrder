@@ -4,27 +4,29 @@ Stwórz REST API w NET 6 zawierające jedną metodę służącą do wyszukiwania
 
 1. Lokalizacja pliku powinna być zapisana w pliku konfiguracyjnym
 1. Opis pliku CSV
+
    1. Struktura pliku:
 
       0. Pierwszą linią pliku CSV są nagłówki
-      0. Separator kolumn: przecinek
-      0. Separator części dziesiętnej liczb rzeczywistych: kropka
-      0. Format daty: dd.MM.yyyy
-      0. Zapis wartości logicznych true/false: 1/0
-      0. Dane tekstowe w cudzysłowu
-      0. Kodowanie UTF-8
+      1. Separator kolumn: przecinek
+      2. Separator części dziesiętnej liczb rzeczywistych: kropka
+      3. Format daty: dd.MM.yyyy
+      4. Zapis wartości logicznych true/false: 1/0
+      5. Dane tekstowe w cudzysłowu
+      6. Kodowanie UTF-8
+
    1. Kolumny
 
-|Nagłówek|Typ danych|Wymagane|
-| :- | :- | :- |
-|Number|Tekst|Tak|
-|ClientCode|Tekst|Tak|
-|ClientName|Tekst|Tak|
-|OrderDate|Data|Tak|
-|ShipmentDate|Data|Nie|
-|Quantity|Liczba całkowita|Tak|
-|Confirmed|Wartość logiczna|Tak|
-|Value|Liczba rzeczywista|Tak|
+| Nagłówek     | Typ danych         | Wymagane |
+| :----------- | :----------------- | :------- |
+| Number       | Tekst              | Tak      |
+| ClientCode   | Tekst              | Tak      |
+| ClientName   | Tekst              | Tak      |
+| OrderDate    | Data               | Tak      |
+| ShipmentDate | Data               | Nie      |
+| Quantity     | Liczba całkowita   | Tak      |
+| Confirmed    | Wartość logiczna   | Tak      |
+| Value        | Liczba rzeczywista | Tak      |
 
 1. Możliwe warunki które ma obsłużyć API
    1. Numer zamówienia
@@ -36,4 +38,3 @@ Stwórz REST API w NET 6 zawierające jedną metodę służącą do wyszukiwania
 1. Lista wyszukanych zamówień powinna być zwrócona w formacie json i zawierać wszystkie dane odfiltrowanych zamówień z pliku
 
 1. Kod powinien być napisany w sposób umożliwiający pokrycie go testami
-

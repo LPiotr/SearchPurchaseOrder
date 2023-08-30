@@ -3,7 +3,6 @@ using CsvHelper.Configuration;
 using SearchPurchaseOrder.Configuration;
 using SearchPurchaseOrder.Models;
 using System.Globalization;
-using System.Threading;
 
 namespace SearchPurchaseOrder.Interfaces
 {
@@ -13,9 +12,9 @@ namespace SearchPurchaseOrder.Interfaces
         private readonly Mutex _mutex = new();
         private List<PurchaseOrder>? _orders = new();
 
-        private CsvOrderFileReader() 
+        private CsvOrderFileReader()
         {
-            _orders = null; 
+            _orders = null;
         }
 
         public static CsvOrderFileReader Instance => _instance;

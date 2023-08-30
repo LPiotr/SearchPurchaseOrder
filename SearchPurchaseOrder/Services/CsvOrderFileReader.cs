@@ -6,14 +6,19 @@ using System.Globalization;
 
 namespace SearchPurchaseOrder.Interfaces
 {
-    public class CsvOrderFileReader : IPurchaseOrderFileReader
+    public sealed class CsvOrderFileReader : IPurchaseOrderFileReader
     {
-        private readonly List<PurchaseOrder> _orders = new List<PurchaseOrder>();
+        private static readonly CsvOrderFileReader _instance = new();
+        private readonly List<PurchaseOrder> _orders = new();
+
+        private CsvOrderFileReader() { }
+
+        public static CsvOrderFileReader Instance => _instance;
 
         public async Task<IEnumerable<PurchaseOrder>> ReadOrders(string path)
         {
-            if(_orders.Any()) { return _orders; } 
-            
+            if (_orders.Any()) { return _orders; }
+
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
                 HasHeaderRecord = true,

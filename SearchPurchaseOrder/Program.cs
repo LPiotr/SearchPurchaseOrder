@@ -16,7 +16,8 @@ builder.Services.AddMediatR(cfg =>
 cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
 //singleton dla klasy implementuj¹cej import CSV: (klasa cache dla obiektu z csv)
-builder.Services.AddSingleton<IPurchaseOrderFileReader, CsvOrderFileReader>();
+builder.Services.AddSingleton<IPurchaseOrderFileReader>(CsvOrderFileReader.Instance);
+
 //rejestracja filtrów
 builder.Services.AddTransient<IOrderFilter, PurchaseOrderFilters>();
 //dodajemy DI dla sciezki do pliku z appsettings:

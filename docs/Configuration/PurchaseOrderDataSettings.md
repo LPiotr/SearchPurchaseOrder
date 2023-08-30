@@ -1,4 +1,4 @@
-# `PurchaseOrderDataSettings ` Class Documentation
+# `PurchaseOrderDataSettings` Class Documentation
 
 ## Overview
 

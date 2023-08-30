@@ -1,4 +1,4 @@
-# `IOrderFilter ` Interface Documentation
+# `IOrderFilter` Interface Documentation
 
 ## Overview
 

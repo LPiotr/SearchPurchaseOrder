@@ -15,16 +15,16 @@ A REST API developed in NET 6 designed to search for orders stored in a CSV file
 ## Project Structure
 
 - **Configuration**
-  - [PurchaseOrderDataSettings.cs](#PurchaseOrderDataSettings).
-  - [PurchaseOrderMap.cs](#PurchaseOrderMap).
+  - [PurchaseOrderDataSettings.cs](Configuration/PurchaseOrderDataSettings.md).
+  - [PurchaseOrderMap.cs](Configuration/PurchaseOrderMap.md).
 - **Controllers**
-  - [OrdersController.cs](#OrdersController).
+  - [OrdersController.cs](Controllers/OrdersController.md).
 - **Filters**
-  - [IOrderFilter.cs](#IOrderFilter).
-  - [OrderFilterExtensions.cs](#OrderFilterExtensions).
-  - [PurchaseOrderFilters.cs](#PurchaseOrderFilters).
+  - [IOrderFilter.cs](Filters/IOrderFilter.md).
+  - [OrderFilterExtensions.cs](Filters/OrderFilterExtensions.md).
+  - [PurchaseOrderFilters.cs](Filters/PurchaseOrderFilters.md).
 - **Models**
-  - [PurchaseOrder.cs](#PurchaseOrder).
+  - [PurchaseOrder.cs](Models/PurchaseOrder.md).
 - **Properties**
   - [launchSettings.json](#launchSettings).
 - **Queries**
@@ -35,7 +35,7 @@ A REST API developed in NET 6 designed to search for orders stored in a CSV file
   - [IPurchaseOrderFileReader.cs](Services/IPurchaseOrderFileReader.md).
 - **[appsettings.Development.json](#appsettings-development)**.
 - **[appsettings.json](#appsettings)**.
-- **[data.csv](#data-csv)**.
+- **[dane.csv](#dane-csv)**.
 - **[Program.cs](#Program)**.
 
 ### <a name="csv-description"></a>CSV File Description

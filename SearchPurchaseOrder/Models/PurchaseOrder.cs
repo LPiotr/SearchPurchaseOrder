@@ -2,7 +2,6 @@
 using System.ComponentModel.DataAnnotations;
 
 namespace SearchPurchaseOrder.Models
-
 {
     public class PurchaseOrder
     {

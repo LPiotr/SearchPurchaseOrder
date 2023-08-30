@@ -18,7 +18,6 @@ namespace SearchPurchaseOrder.Controllers
         [HttpGet]
         public async Task<IActionResult> GetOrders([FromQuery] SearchPurchaseOrdersQuery parameters)
         {
-
             var query = new SearchPurchaseOrdersQuery
             {
                 Number = parameters.Number,

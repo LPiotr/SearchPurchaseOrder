@@ -31,13 +31,9 @@ Stwórz REST API w NET 6 zawierające jedną metodę służącą do wyszukiwania
    1. Data zamówienia w postaci zakresu od do
    1. Kod klienta w postaci listy
 1. Ma być możliwe przekazanie dowolnej liczby warunków
-1. API powinno być przygotowane z wykorzystaniem wzorców projektowych Dependency
+1. API powinno być przygotowane z wykorzystaniem wzorców projektowych Dependency Injection i Mediator
 
-Injection i Mediator
-
-1. Lista wyszukanych zamówień powinna być zwrócona w formacie json i zawierać wszystkie
-
-dane odfiltrowanych zamówień z pliku
+1. Lista wyszukanych zamówień powinna być zwrócona w formacie json i zawierać wszystkie dane odfiltrowanych zamówień z pliku
 
 1. Kod powinien być napisany w sposób umożliwiający pokrycie go testami
 

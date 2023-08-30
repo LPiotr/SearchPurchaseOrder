@@ -65,3 +65,33 @@ A REST API developed in NET 6 designed to search for orders stored in a CSV file
 - Order number.
 - Order date in the form of a range from-to.
 - Client code in the form of a list.
+  
+### Project Schema:  
+```bash
+|-- SearchPurchaseOrder
+|   |-- Configuration
+|   |   |-- PurchaseOrderDataSettings.cs
+|   |   |-- PurchaseOrderMap.cs
+|   |-- Controllers
+|   |   |-- OrdersController.cs
+|   |-- Filters
+|   |   |-- IOrderFilter.cs
+|   |   |-- OrderFilterExtensions.cs
+|   |   |-- PurchaseOrderFilters.cs
+|   |-- Models
+|   |   |-- PurchaseOrder.cs
+|   |-- Properties
+|   |   |-- launchSettings.json
+|   |-- Queries
+|   |   |-- SearchOrderQueryHandler.cs
+|   |   |-- SearchPurchaseOrdersQuery.cs
+|   |-- Services
+|   |   |-- CsvOrderFileReader.cs
+|   |   |-- IPurchaseOrderFileReader.cs
+|   |-- appsettings.Development.json
+|   |-- appsettings.json
+|   |-- dane.csv
+|   |-- Program.cs
+|   |-- SearchPurchaseOrder.csproj
+|   |-- SearchPurchaseOrder.csproj.user
+```

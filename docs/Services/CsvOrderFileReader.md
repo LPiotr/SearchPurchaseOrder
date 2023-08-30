@@ -1,52 +1,37 @@
-# `CsvOrderFileReader` Documentation
+# `CsvOrderFileReader` Class Documentation
 
-`CsvOrderFileReader` is a Singleton class that provides functionality to read purchase orders from a CSV file and ensures thread safety while accessing the data.
+## Overview
+The `CsvOrderFileReader` class implements the `IPurchaseOrderFileReader` interface to read purchase orders from a CSV file.
 
-## Class Structure
+## Properties and Fields
 
-### Fields
-
-- **_instance**: A private static read-only instance of the `CsvOrderFileReader`, ensuring the Singleton pattern.
+- **_instance** (`CsvOrderFileReader`): A private static read-only instance of `CsvOrderFileReader`, adhering to the Singleton pattern.
   
-- **_mutex**: A Mutex object to ensure thread safety when reading orders from a CSV file.
+- **_semaphore** (`SemaphoreSlim`): A private instance of `SemaphoreSlim` used to ensure thread-safe access to the `_orders` list.
 
-- **_orders**: A list to cache the purchase orders once they are read from the CSV.
+- **_orders** (`List<PurchaseOrder>?`): A private nullable list that caches the purchase orders after the first read from the CSV file.
 
-### Properties
+- **Instance** (`CsvOrderFileReader`): A public static property that returns the single instance of the class.
 
-- **Instance**: Public property providing access to the Singleton instance of `CsvOrderFileReader`.
+## Constructor
 
-### Constructor
+- **CsvOrderFileReader()**: A private constructor ensuring that the class adheres to the Singleton pattern.
 
-- **CsvOrderFileReader**: A private constructor ensuring that no instances can be created externally.
+## Methods
 
-### Methods
-
-- **ReadOrders**: Reads and caches purchase orders from the specified CSV file path.
-
-## Method Descriptions
-
-### `ReadOrders(string path)`
-
-#### Parameters:
-
-- **path** (type: `string`): The file path to the CSV containing the purchase orders.
-
-#### Returns:
-
-- A list of `PurchaseOrder` objects.
-
-#### Description:
-
-- If the orders are already cached, it returns the cached list.
-
-- If the orders are not cached, it uses a mutex to ensure thread safety when accessing the CSV file. 
-
-- The method reads the CSV, caches the purchase orders, and then returns the orders.
-
-#### Usage:
-
-To read purchase orders from a specified path:
+### `ReadOrders`
 
 ```csharp
-var orders = CsvOrderFileReader.Instance.ReadOrders("path/to/csv/file.csv");
+public async Task<IEnumerable<PurchaseOrder>> ReadOrders(string path)
+```
+
+This method is responsible for reading and parsing the purchase orders from a given CSV file path. The reading is done using CsvHelper. The function uses a semaphore for thread safety, ensuring only one thread reads and initializes the _orders list. If _orders has already been initialized, it returns the cached list; otherwise, it reads from the file and caches the list for subsequent calls.
+
+
+The method performs the following steps:
+
+1. Checks if the _orders list is already initialized. If it is, it returns the list immediately.
+1. Waits for access to the _semaphore to ensure thread safety.
+1. Reads the CSV file using CsvHelper, making use of the provided PurchaseOrderMap for mapping.
+1. Parses the records into the _orders list.
+1. Releases the semaphore lock and returns the parsed list of orders.

@@ -1,5 +1,5 @@
-﻿using CsvHelper;
-using CsvHelper.Configuration;
+﻿using CsvHelper.Configuration;
+using CsvHelper;
 using SearchPurchaseOrder.Configuration;
 using SearchPurchaseOrder.Models;
 using System.Globalization;
@@ -9,13 +9,10 @@ namespace SearchPurchaseOrder.Interfaces
     public sealed class CsvOrderFileReader : IPurchaseOrderFileReader
     {
         private static readonly CsvOrderFileReader _instance = new();
-        private readonly Mutex _mutex = new();
-        private List<PurchaseOrder>? _orders = new();
+        private readonly SemaphoreSlim _semaphore = new(1); 
+        private List<PurchaseOrder>? _orders = null; 
 
-        private CsvOrderFileReader()
-        {
-            _orders = null;
-        }
+        private CsvOrderFileReader(){}
 
         public static CsvOrderFileReader Instance => _instance;
 
@@ -23,10 +20,11 @@ namespace SearchPurchaseOrder.Interfaces
         {
             if (_orders != null) { return _orders; }
 
-            _mutex.WaitOne();
+            await _semaphore.WaitAsync();
             try
             {
                 if (_orders != null) { return _orders; }
+
                 var config = new CsvConfiguration(CultureInfo.InvariantCulture)
                 {
                     HasHeaderRecord = true,
@@ -54,7 +52,7 @@ namespace SearchPurchaseOrder.Interfaces
             }
             finally
             {
-                _mutex.ReleaseMutex();
+                _semaphore.Release();
             }
         }
     }

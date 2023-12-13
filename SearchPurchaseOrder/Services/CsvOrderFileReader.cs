@@ -24,7 +24,10 @@ namespace SearchPurchaseOrder.Interfaces
 
         public async Task<IEnumerable<PurchaseOrder>> ReadOrders(string path)
         {
-            if (_orders != null) return _orders;
+            if (_orders != null)
+            {
+                return _orders;
+            }
 
             if (!_semaphore.Wait(0)) // Non-blocking check
             {

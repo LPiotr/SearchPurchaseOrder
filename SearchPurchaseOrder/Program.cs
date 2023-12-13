@@ -20,6 +20,7 @@ cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 builder.Services.AddSingleton<IPurchaseOrderFileReader>(CsvOrderFileReader.Instance);
 
 builder.Services.AddHostedService<PurchaseOrderHostedService>();
+
 //rejestracja filtrów
 builder.Services.AddTransient<IOrderFilter, PurchaseOrderFilters>();
 //add DI for the path to the appsettings file:

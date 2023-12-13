@@ -6,7 +6,7 @@ using System.Globalization;
 
 namespace SearchPurchaseOrder.Interfaces
 {
-    public sealed class CsvOrderFileReader : IPurchaseOrderFileReader, IHostedService
+    public sealed class CsvOrderFileReader : IPurchaseOrderFileReader
     {
         private static readonly CsvOrderFileReader _instance = new();
         private readonly SemaphoreSlim _semaphore = new(1); 
@@ -54,16 +54,6 @@ namespace SearchPurchaseOrder.Interfaces
             {
                 _semaphore.Release();
             }
-        }
-
-        public Task StartAsync(CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task StopAsync(CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
         }
     }
 }

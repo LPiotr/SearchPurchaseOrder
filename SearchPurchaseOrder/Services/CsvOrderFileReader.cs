@@ -12,8 +12,6 @@ namespace SearchPurchaseOrder.Interfaces
         private readonly SemaphoreSlim _semaphore = new(1); 
         private List<PurchaseOrder>? _orders = null;
 
-        public CsvOrderFileReader() { }
-
         public static CsvOrderFileReader Instance => _instance;
 
         public async Task<IEnumerable<PurchaseOrder>> ReadOrders(string path)

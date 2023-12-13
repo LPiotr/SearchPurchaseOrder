@@ -1,6 +1,7 @@
 using SearchPurchaseOrder.Configuration;
 using SearchPurchaseOrder.Filters;
 using SearchPurchaseOrder.Interfaces;
+using SearchPurchaseOrder.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
@@ -15,12 +16,13 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(cfg =>
 cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
-//singleton dla klasy implementuj¹cej import CSV: (klasa cache dla obiektu z csv)
+//singleton for the class implementing CSV import: (cache class for the csv object)
 builder.Services.AddSingleton<IPurchaseOrderFileReader>(CsvOrderFileReader.Instance);
 
+builder.Services.AddHostedService<PurchaseOrderHostedService>();
 //rejestracja filtrów
 builder.Services.AddTransient<IOrderFilter, PurchaseOrderFilters>();
-//dodajemy DI dla sciezki do pliku z appsettings:
+//add DI for the path to the appsettings file:
 builder.Services.Configure<PurchaseOrderDataSettings>(Configuration.GetSection(nameof(PurchaseOrderDataSettings)));
 
 var app = builder.Build();

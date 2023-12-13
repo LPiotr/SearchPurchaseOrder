@@ -6,13 +6,13 @@ using System.Globalization;
 
 namespace SearchPurchaseOrder.Interfaces
 {
-    public sealed class CsvOrderFileReader : IPurchaseOrderFileReader
+    public sealed class CsvOrderFileReader : IPurchaseOrderFileReader, IHostedService
     {
         private static readonly CsvOrderFileReader _instance = new();
         private readonly SemaphoreSlim _semaphore = new(1); 
-        private List<PurchaseOrder>? _orders = null; 
+        private List<PurchaseOrder>? _orders = null;
 
-        private CsvOrderFileReader(){}
+        public CsvOrderFileReader() { }
 
         public static CsvOrderFileReader Instance => _instance;
 
@@ -54,6 +54,16 @@ namespace SearchPurchaseOrder.Interfaces
             {
                 _semaphore.Release();
             }
+        }
+
+        public Task StartAsync(CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task StopAsync(CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
         }
     }
 }

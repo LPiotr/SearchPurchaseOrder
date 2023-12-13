@@ -6,6 +6,11 @@ using System.Globalization;
 
 namespace SearchPurchaseOrder.Interfaces
 {
+    /// <summary>
+    /// Provides functionality to read purchase orders from a CSV file.
+    /// This class implements the singleton pattern to ensure a single instance
+    /// is used throughout the application. It uses CsvHelper for CSV parsing.
+    /// </summary>
     public sealed class CsvOrderFileReader : IPurchaseOrderFileReader
     {
         private static readonly CsvOrderFileReader _instance = new();
@@ -22,6 +27,14 @@ namespace SearchPurchaseOrder.Interfaces
 
         private CsvOrderFileReader() { }
 
+        /// <summary>
+        /// Asynchronously reads purchase orders from a specified CSV file path.
+        /// If the orders have already been read, it returns the cached orders.
+        /// This method is thread-safe and uses a SemaphoreSlim to control access.
+        /// </summary>
+        /// <param name="path">The file path of the CSV to read.</param>
+        /// <returns>A task that represents the asynchronous read operation. 
+        /// The task result contains a collection of <see cref="PurchaseOrder"/>.</returns>
         public async Task<IEnumerable<PurchaseOrder>> ReadOrders(string path)
         {
             if (_orders != null)
@@ -46,6 +59,13 @@ namespace SearchPurchaseOrder.Interfaces
             }
         }
 
+        /// <summary>
+        /// Private helper method to asynchronously load purchase orders from a CSV file.
+        /// This method is called internally by ReadOrders.
+        /// </summary>
+        /// <param name="path">The file path of the CSV to read.</param>
+        /// <returns>A task that represents the asynchronous read operation. 
+        /// The task result contains a list of <see cref="PurchaseOrder"/>.</returns>
         private static async Task<List<PurchaseOrder>> LoadOrdersFromCsvAsync(string path)
         {
             var orders = new List<PurchaseOrder>();

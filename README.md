@@ -1,37 +1,42 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/9d62951e6c1140bd9b8f6e68b20d0a2f)](https://app.codacy.com/gh/LPiotr/SearchPurchaseOrder/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
-	Stwórz REST API w NET 6 zawierające jedną metodę służącą do wyszukiwania zamówień zapisanych w pliku w formacie CSV na podstawie przekazanych danych filtrujących.
 
-1.  Lokalizacja pliku powinna być zapisana w pliku konfiguracyjnym
-1.  Opis pliku CSV
-	1. Struktura pliku:
-      	- Pierwszą linią pliku CSV są nagłówki
-     	- Separator kolumn: przecinek
-      	- Separator części dziesiętnej liczb rzeczywistych: kropka
-      	- Format daty: dd.MM.yyyy
-      	- Zapis wartości logicznych true/false: 1/0
-      	- Dane tekstowe w cudzysłowu
-      	- Kodowanie UTF-8
-	1. Kolumny
 
-| Nagłówek     | Typ danych         | Wymagane |
+Create a REST API in NET 6 that includes a single method for searching orders saved in a CSV file based on provided filtering data.
+
+1. The file location should be saved in a configuration file.
+2. Description of the CSV file:
+	
+	a. File Structure:
+    - The first line of the CSV file is headers.
+	- Column separator: comma.
+   	- Decimal separator for real numbers: dot.
+	- Date format: dd.MM.yyyy.
+	- True/false logical values representation: 1/0.
+	- Text data in quotes.
+	- UTF-8 encoding.
+   
+   b. Columns:
+
+|Header | Data Type	| Required |
 | :----------- | :----------------- | :------- |
-| Number       | Tekst              | Tak      |
-| ClientCode   | Tekst              | Tak      |
-| ClientName   | Tekst              | Tak      |
-| OrderDate    | Data               | Tak      |
-| ShipmentDate | Data               | Nie      |
-| Quantity     | Liczba całkowita   | Tak      |
-| Confirmed    | Wartość logiczna   | Tak      |
-| Value        | Liczba rzeczywista | Tak      |
- 
-3. Możliwe warunki które ma obsłużyć API
-   1. Numer zamówienia
-   1. Data zamówienia w postaci zakresu od do
-   1. Kod klienta w postaci listy
-1. Ma być możliwe przekazanie dowolnej liczby warunków
-1. API powinno być przygotowane z wykorzystaniem wzorców projektowych Dependency Injection i Mediator
+|Number	| Text|	Yes |
+|ClientCode	|Text|	Yes |
+|ClientName	|Text	|Yes |
+|OrderDate |	Date	| Yes |
+|ShipmentDate |	Date	| No |
+|Quantity |	Integer	 | Yes |
+|Confirmed |	Boolean	|Yes |
+|Value |	Real Number|	Yes |
 
-1. Lista wyszukanych zamówień powinna być zwrócona w formacie json i zawierać wszystkie dane odfiltrowanych zamówień z pliku
 
-1. Kod powinien być napisany w sposób umożliwiający pokrycie go testami
+3. Possible conditions to be handled by the API:
+
+   1. Order number.
+   2. Order date in the form of a range from-to.
+   3. Client code in the form of a list.
+   4. It should be possible to pass any number of conditions.
+
+4. The API should be prepared using the Dependency Injection and Mediator design patterns.
+5. The list of found orders should be returned in json format and include all the data of the filtered orders from the file.
+6. The code should be written in a way that allows it to be covered with tests.
